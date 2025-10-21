@@ -61,7 +61,7 @@ async function getWeather(city = null, lat = null, lon = null) {
     const sunsetTime = new Date(currentData.sys.sunset * 1000).toLocaleTimeString();
     sunrise.textContent = sunriseTime;
     sunset.textContent = sunsetTime;
-    weatherIcon.src = `http://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png`;
+  weatherIcon.src = `https://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png`;
 
     result.classList.remove("hidden");
 
@@ -82,9 +82,9 @@ async function getWeather(city = null, lat = null, lon = null) {
       card.classList.add("forecast-card");
       card.innerHTML = `
         <p>${date}</p>
-        <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="Icon" width="50" height="50" />
+        <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="Icon" width="50" height="50" />
         <p>${day.weather[0].description}</p>
-        <p>${Math.round(day.main.temp)}°C</p>
+        <p>${Math.round(day.main.temp)}0C</p>
       `;
       forecastCards.appendChild(card);
     });

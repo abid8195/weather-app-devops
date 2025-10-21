@@ -1,15 +1,15 @@
 # Serve static files via NGINX
 FROM nginx:alpine
 
-# Remove default nginx static content
+# Remove default nginx static content and copy site from the `app/` folder
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy your site
-COPY index.html /usr/share/nginx/html/
-COPY styles.css /usr/share/nginx/html/
-COPY script.js /usr/share/nginx/html/
-COPY images/ /usr/share/nginx/html/images/
+# Copy the entire `app/` directory into nginx html directory. This allows
+# building the image from the repository root (docker build -t weather-app .)
+COPY app/ /usr/share/nginx/html/
 
-# Minimal security headers (optional)
-# You can also inject these via nginx.conf for stricter CSP
+# Expose HTTP
 EXPOSE 80
+
+# Keep nginx running in foreground
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,19 @@
+# Ignore git metadata and Dockerfiles from nested folders
+.git
+.gitignore
+node_modules
+npm-debug.log
+Dockerfile/
+**/Dockerfile
+.dockerignore
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Build artifacts
+dist
+build
+
+# Secrets
+.env
