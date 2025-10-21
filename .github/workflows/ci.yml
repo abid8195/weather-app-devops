@@ -1,0 +1,43 @@
+name: ci
+
+on:
+  pull_request:
+    branches: [ develop, main ]
+  push:
+    branches: [ develop ]
+
+jobs:
+  lint-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Minimal sanity checks for a static site; no Node build required
+      - name: Verify required files exist
+        run: |
+          test -f index.html
+          test -f script.js
+          test -f styles.css
+          echo "Required files found."
+
+      - name: Check for insecure HTTP icon URLs
+        run: |
+          if grep -R "http://openweathermap.org" -n --include="*.html" --include="*.js" .; then
+            echo "Found http:// references (mixed-content risk). Use https://openweathermap.org/img/wn/..."
+            exit 1
+          else
+            echo "No insecure icon references."
+          fi
+
+      - name: Make site directory
+        run: |
+          mkdir -p site
+          shopt -s globstar nullglob
+          cp -r index.html styles.css script.js images site/ 2>/dev/null || true
+
+      - name: Upload artifact (site)
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: site
