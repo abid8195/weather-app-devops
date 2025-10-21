@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🌦️ Weather App</h1>
+    <form id="weatherForm">
+      <input type="text" id="cityInput" placeholder="Enter city name" required />
+      <button type="submit">Search</button>
+      <button type="button" id="locationBtn">Use My Location</button>
+    </form>
+
+    <div id="loading" class="loading hidden">Loading...</div>
+
+    <div id="result" class="card hidden">
+      <h2 id="cityName"></h2>
+      <img id="weatherIcon" src="" alt="Weather Icon" />
+      <p id="description"></p>
+      <p>Temperature: <span id="temp"></span>°C</p>
+      <p>Feels Like: <span id="feelsLike"></span>°C</p>
+      <p>Min/Max: <span id="tempMin"></span>°C / <span id="tempMax"></span>°C</p>
+      <p id="humidity"></p>
+      <p id="wind"></p>
+      <p>Pressure: <span id="pressure"></span> hPa</p>
+      <p>Visibility: <span id="visibility"></span> km</p>
+      <p>Sunrise: <span id="sunrise"></span></p>
+      <p>Sunset: <span id="sunset"></span></p>
+    </div>
+
+    <div id="forecast" class="forecast hidden">
+      <h3>5-Day Forecast</h3>
+      <div id="forecastCards"></div>
+    </div>
+
+    <div id="error" class="error hidden"></div>
+  </div>
+
+  <footer>Data from OpenWeatherMap</footer>
+  <script src="script.js"></script>
+</body>
+</html>
