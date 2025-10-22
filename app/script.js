@@ -84,7 +84,7 @@ async function getWeather(city = null, lat = null, lon = null) {
         <p>${date}</p>
         <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="Icon" width="50" height="50" />
         <p>${day.weather[0].description}</p>
-        <p>${Math.round(day.main.temp)}0C</p>
+        <p>${Math.round(day.main.temp)}°C</p>
       `;
       forecastCards.appendChild(card);
     });
